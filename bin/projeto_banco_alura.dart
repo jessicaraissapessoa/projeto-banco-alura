@@ -48,6 +48,10 @@ void main() {
     print(e);
     print("O usuário remetente de ID '${e.idSender}' não está autenticado");
 
+  } on ReceiverNotAuthenticatedException catch (e) {
+    print(e);
+    print("O usuário destinatário de ID '${e.idReceiver}' não está autenticado");
+
   } on SenderBalanceLowerThanamountException catch (e) {
     print(e);
     print("O usuário de ID '${e.idSender}' tentou enviar ${e.amount} reais. No entanto, sua conta possui saldo de ${e.senderBalance} reais");
