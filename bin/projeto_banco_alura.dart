@@ -18,7 +18,7 @@ void testingNullSafety() {
 
   print(myAccount.runtimeType);
 
-  //print(myAccount!.balance); forçando conversão. não seguro. má prática
+  //print(myAccount!.balance); teste forçando conversão. não seguro. má prática
 
   //forma segura de resolver:
   if(myAccount != null) {
@@ -29,6 +29,9 @@ void testingNullSafety() {
 
   //forma segura de resolver com operador ternário:
   print(myAccount != null ? myAccount.balance : "Conta nula");
+
+  //forma mais curta e segura de resolver (safe call)
+  print(myAccount?.balance); //se não for nulo exibe balance, se for, printa null
 
 }
 
