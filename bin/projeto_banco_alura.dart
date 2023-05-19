@@ -1,11 +1,41 @@
+import 'dart:math';
+
 import 'controllers/bank_controller.dart';
 import 'exceptions/bank_controller_exceptions.dart';
 import 'models/Account.dart';
 
+void testingNullSafety() {
+  Account ? myAccount;
+
+  //Simulando uma comunicação externa
+  Random rng = Random();
+
+  int randomNumber = rng.nextInt(10); // entre () o máximo que recebe: no caso vai de 0 a 10
+
+  if (randomNumber <= 5) {
+    myAccount = Account(name: 'Ricarth', balance: 200, isAuthenticated: true);
+  }
+
+  print(myAccount.runtimeType);
+
+  //print(myAccount!.balance); forçando conversão. não seguro. má prática
+
+  //forma segura de resolver:
+  if(myAccount != null) {
+    print(myAccount.balance);
+  } else {
+    print("Conta nula");
+  }
+
+  //forma segura de resolver com operador ternário:
+  print(myAccount != null ? myAccount.balance : "Conta nula");
+
+}
+
 void main() {
 
+  testingNullSafety();
 
-  assert(2 < 1, "Levantei o Assert");
 
   //Criação do banco
 
