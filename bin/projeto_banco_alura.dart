@@ -5,7 +5,7 @@ import 'exceptions/bank_controller_exceptions.dart';
 import 'models/Account.dart';
 
 void testingNullSafety() {
-  Account ? myAccount;
+  Account? myAccount = Account(name: 'Ricarth', balance: 200, isAuthenticated: true);
 
   //Simulando uma comunicação externa
   Random rng = Random();
@@ -13,16 +13,21 @@ void testingNullSafety() {
   int randomNumber = rng.nextInt(10); // entre () o máximo que recebe: no caso vai de 0 a 10
 
   if (randomNumber <= 5) {
-    myAccount = Account(name: 'Ricarth', balance: 200, isAuthenticated: true);
+    myAccount.createdAt = DateTime.now();
   }
 
   print(myAccount.runtimeType);
+  print(myAccount.createdAt);
 
   //print(myAccount!.balance); teste forçando conversão. não seguro. má prática
 
   //forma segura de resolver:
   if(myAccount != null) {
     print(myAccount.balance);
+
+    if (myAccount.createdAt != null) {
+      print(myAccount.createdAt!.day);
+    }
   } else {
     print("Conta nula");
   }
@@ -30,7 +35,7 @@ void testingNullSafety() {
   //forma segura de resolver com operador ternário:
   print(myAccount != null ? myAccount.balance : "Conta nula");
 
-  //forma mais curta e segura de resolver (safe call)
+  //forma mais curta e segura de resolver (safe call) - chamada segura
   print(myAccount?.balance); //se não for nulo exibe balance, se for, printa null
 
 }

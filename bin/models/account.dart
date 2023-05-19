@@ -6,9 +6,10 @@ class Account {
   String name;
   double balance;
   bool isAuthenticated;
+  DateTime? createdAt;
 
   //construtor:
-  Account( { required this.name, required this.balance, required this.isAuthenticated } );
+  Account( { required this.name, required this.balance, required this.isAuthenticated, this.createdAt } );
 
   //método para editar saldo:
   editBalance({required value}) {
